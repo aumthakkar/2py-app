@@ -33,3 +33,50 @@ jobs:
 
     outputs:
       commit_id: ${{ env.COMMIT_ID }} 
+
+  cd:
+    needs: ci
+    runs-on: self-hosted
+    steps:
+      - 
+        name: Clone your github repo
+        uses: actions/checkout@v5
+
+      - 
+        name: Modify charts values file
+        shell: bash
+        run: |
+          echo "${{ needs.ci.outputs.commit_id }}"
+          sudo apt update && sudo apt install python3-pip -y
+          pip3 install yq --break-system-packages
+          yq -yi '.image.tag = ${{ needs.ci.outputs.commit_id }}' charts/py-app/templates/values.yaml
+
+      - 
+        name: Commit changes back to your Github repo
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "Updated Helm values.yaml file with commit ${{ needs.ci.outputs.commit_id }} "
+
+      - 
+        name: Install and configure ArgoCD
+        shell: bash
+        run: |
+          curl -ksSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x argocd
+          sudo mv ./argocd /local/usr/bin/argocd
+
+      -
+        name: ArgoCD login
+        shell: bash
+        run: |
+          argocd login argocd-server.argocd \ 
+            --username=${{ secrets.ARGOCD_USERNAME}} \
+            --password=${{ secrets.ARGOCD_PASSWORD }} \
+            --grpc-web \
+            --insecure
+          argocd app sync py-app
+
+
+          
+    
+    
