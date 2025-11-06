@@ -49,7 +49,7 @@ jobs:
           echo "${{ needs.ci.outputs.commit_id }}"
           sudo apt update && sudo apt install python3-pip -y
           pip3 install yq --break-system-packages
-          yq -Yi '.image.tag = ${{ needs.ci.outputs.commit_id }}' charts/py-app//values.yaml
+          yq -Yi '.image.tag = "${{ needs.ci.outputs.commit_id }}"' charts/py-app//values.yaml
 
       - 
         name: Commit changes back to your Github repo
