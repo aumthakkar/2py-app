@@ -13,7 +13,7 @@ def info():
     return jsonify({
         "hostname" : socket.gethostname(),
         "time" : time.ctime(),
-        "message" : "You are doing great Pranav, Way to go!! <3"
+        "message" : "You are doing great Pranav! Way to go!! <3"
     })
 
 @app.route('/api/v1/healthz')
@@ -23,7 +23,7 @@ def healthz():
     })
 
 # main driver function
-if __name__ == '__main__':
+if __name__ == '__main__':👍🏽
 
     # run() method of Flask class runs the application 
     # on the local development server.

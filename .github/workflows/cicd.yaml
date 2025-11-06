@@ -70,10 +70,10 @@ jobs:
         shell: bash
         run: |
           argocd login argocd-server.argocd \ 
-            --username=${{ secrets.ARGOCD_USERNAME}} \
-            --password=${{ secrets.ARGOCD_PASSWORD }} \
+            --insecure \  
             --grpc-web \
-            --insecure
+            --username "${{ secrets.ARGOCD_USERNAME}}" \
+            --password "${{ secrets.ARGOCD_PASSWORD }}" 
           argocd app sync py-app
 
 
