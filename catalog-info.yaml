@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: backstage
+  name: py-app
   description: An example of a Backstage application.
   annotations:
     github.com/project-slug: aumthakkar/2py-app
