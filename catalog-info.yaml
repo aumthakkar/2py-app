@@ -5,6 +5,7 @@ metadata:
   description: An example of a Backstage application.
   annotations:
     github.com/project-slug: aumthakkar/2py-app
+    backstage.io/techdocs-ref: dir:. # (<-- This one is for Techdocs) 
  
 spec:
   type: service

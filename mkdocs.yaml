@@ -1,0 +1,15 @@
+site_name: 'py-app'
+site_description: 'Main documentation for py-app'
+repo_url: https://github.com/aumthakkar/2py-app
+edit_uri: edit/main/docs
+
+plugins:
+  - techdocs-core
+  - redirects:
+      redirect_maps:
+        'index.md': 'docs/index.md' # So if you have more files in docs folder then you will list them under nav and choose which one will be the index.md file here. 
+  
+# For sidebar navigation on https://backstage.io/, see `microsite/sidebars.js`
+nav:
+  - Overview:
+      - Getting started : 'docs/index.md'
