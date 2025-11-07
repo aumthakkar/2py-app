@@ -5,9 +5,6 @@ edit_uri: edit/main/docs
 
 plugins:
   - techdocs-core
-  - redirects:
-      redirect_maps:
-        'index.md': 'docs/index.md' # So if you have more files in docs folder then you will list them under nav and choose which one will be the index.md file here. 
   
 # For sidebar navigation on https://backstage.io/, see `microsite/sidebars.js`
 nav:
